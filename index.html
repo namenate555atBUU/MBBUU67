@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ศูนย์รวมระบบงาน — สำหรับนิสิตและอาจารย์</title>
+<meta name="description" content="ค้นหาและเข้าใช้งานทุกระบบสำหรับนิสิตและอาจารย์ได้จากที่เดียว พร้อมประกาศและปฏิทินการศึกษา">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3f2f2; --text:#201e1d; --accent:#ec3013; --accent-100:#fff2ef;
+    --accent-700:#ae1800; --divider:rgba(32,30,29,.4);
+    --n100:#f8f4f4; --n400:#bab6b6; --n600:#7d7979; --n700:#605d5d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Archivo","Noto Sans Thai",sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent-700);text-decoration:none}
+  a:hover{color:var(--accent)}
+  input:focus-visible,button:focus-visible,a:focus-visible{
+    outline:2px solid var(--accent);outline-offset:2px}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px 96px;
+    background:linear-gradient(180deg,#D3FFFE,#FDE6E6);border-radius:0}
+
+  header.top{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    flex-wrap:wrap;padding:28px 0 20px;border-bottom:2px solid var(--divider)}
+  .brand{display:flex;align-items:baseline;gap:14px}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .brand-name{font-size:20px;font-weight:600}
+  header.top nav{display:flex;gap:22px;font-size:14px;font-weight:500;flex-wrap:wrap}
+
+  .hero{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;
+    padding:56px 0 40px;border-bottom:2px solid var(--divider)}
+  .hero h1{margin:0 0 18px;font-size:46px;line-height:1.12;font-weight:700;
+    letter-spacing:-.01em;text-wrap:pretty}
+  .hero p{margin:0;font-size:17px;line-height:1.6;max-width:46ch;color:var(--n700);text-wrap:pretty}
+  .search label{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--n600);margin-bottom:10px}
+  .search input{width:100%;padding:16px 18px;font-size:17px;border:2px solid var(--text);
+    border-radius:0;background:#fff;color:var(--text);font-family:inherit}
+
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 28px}
+  .filters button{border:2px solid var(--text);background:transparent;color:var(--text);
+    padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;border-radius:0;font-family:inherit}
+  .filters button:hover{background:var(--accent-100)}
+  .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+  .card{display:flex;flex-direction:column;gap:10px;background:#fff;padding:26px 24px 24px;
+    min-height:168px;color:var(--text);outline:2px solid var(--divider)}
+  .card:hover{background:var(--accent-100);color:var(--text)}
+  .card .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .card .name{font-size:20px;font-weight:600;line-height:1.3;text-wrap:pretty}
+  .card .desc{font-size:14px;line-height:1.55;color:var(--n700);margin-top:auto}
+  .empty{display:none;margin:24px 0 0;font-size:16px;color:var(--n700)}
+
+  .lower{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;margin-top:72px;
+    padding-top:40px;border-top:2px solid var(--divider)}
+  .lower h2{margin:0 0 24px;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent)}
+  .news-item{display:grid;grid-template-columns:92px 1fr;gap:20px;padding:20px 0;
+    border-top:2px solid var(--divider)}
+  .news-item:last-of-type{border-bottom:2px solid var(--divider)}
+  .news-item time{font-size:13px;font-weight:600;color:var(--n600);padding-top:3px}
+  .news-item h3{margin:0 0 6px;font-size:19px;font-weight:600;line-height:1.35;text-wrap:pretty}
+  .news-item p{margin:0;font-size:15px;line-height:1.6;color:var(--n700);text-wrap:pretty}
+  .cal-row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline;
+    padding:16px 0;border-top:2px solid var(--divider)}
+  .cal-row:last-child{border-bottom:2px solid var(--divider)}
+  .cal-row span:first-child{font-size:16px;font-weight:500}
+  .cal-row span:last-child{font-size:14px;font-weight:600;color:var(--n600)}
+
+  footer.bottom{margin-top:72px;padding-top:24px;border-top:2px solid var(--divider);
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    font-size:13px;color:var(--n600)}
+
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .hero,.lower{grid-template-columns:1fr;gap:32px}
+    .hero h1{font-size:34px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px 64px}
+    .grid{grid-template-columns:1fr}
+    .news-item{grid-template-columns:1fr;gap:6px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <span class="kicker">Portal</span>
+      <span class="brand-name">ศูนย์รวมระบบงาน</span>
+    </div>
+    <nav>
+      <a href="#apps">ระบบทั้งหมด</a>
+      <a href="#news">ประกาศ</a>
+      <a href="#calendar">ปฏิทินการศึกษา</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>ทุกระบบสำหรับนิสิต (รหัส 67)<br>และอาจารย์ ในที่เดียว</h1>
+      <p>ค้นหาชื่อระบบที่ต้องการ แล้วคลิกเพื่อเข้าใช้งานได้ทันที ไม่ต้องจำลิงก์แยกกันอีก</p>
+    </div>
+    <div class="search">
+      <label for="q">ค้นหาระบบ</label>
+      <input id="q" type="search" placeholder="พิมพ์ชื่อระบบ เช่น สัมมนา, resume, ฝึกงาน" autocomplete="off">
+    </div>
+  </section>
+
+  <section id="apps">
+    <div class="filters" id="filters">
+      <button type="button" data-cat="all" aria-pressed="true">ทั้งหมด</button>
+      <button type="button" data-cat="student" aria-pressed="false">สำหรับนิสิต</button>
+      <button type="button" data-cat="staff" aria-pressed="false">สำหรับอาจารย์</button>
+      <button type="button" data-cat="coop" aria-pressed="false">ฝึกงาน / สหกิจศึกษา</button>
+    </div>
+
+    <!-- เพิ่มระบบใหม่: คัดลอกบล็อก <a class="card"> ทั้งบล็อก แล้วแก้ href, data-cat, data-keywords และข้อความ
+         data-cat ใส่ได้หลายค่า เว้นวรรคคั่น เช่น "student staff" -->
+    <div class="grid" id="grid">
+
+      <a class="card" data-cat="student staff" data-keywords="สัมมนา ส่งงาน seminar submit งานสัมมนา" href="https://script.google.com/macros/s/AKfycbxD65vRCgQRcNj3_MhiS5nYszMfajfluTG6AbPb1wHGUDemvFdTgD5n-Q3M7HSMme4J/exec" target="_blank" rel="noopener">
+        <span class="tag">วิชาสัมมนา</span>
+        <span class="name">ระบบส่งงานสัมมนา</span>
+        <span class="desc">ส่งไฟล์และติดตามสถานะงานสัมมนา</span>
+      </a>
+
+      <a class="card" data-cat="coop student staff" data-keywords="resume เรซูเม่ ฝึกงาน สหกิจ ประวัติ cv" href="https://script.google.com/macros/s/AKfycbweEYHa35N4S7ZmWGmj5ebiGqt-GcAdP8V8tocIoJd_ScENZN9H797EmbUquFftemLn/exec" target="_blank" rel="noopener">
+        <span class="tag">ฝึกงาน / สหกิจศึกษา</span>
+        <span class="name">ระบบการจัดทำ resume สำหรับฝึกงาน และ สหกิจศึกษา</span>
+        <span class="desc">กรอกข้อมูลและออกไฟล์เรซูเม่ตามรูปแบบที่กำหนด</span>
+      </a>
+
+      <a class="card" data-cat="coop student staff" data-keywords="ยื่นความประสงค์ ฝึกงาน สหกิจ แจ้งความประสงค์" href="https://script.google.com/macros/s/AKfycbzRM-7gwm_RyNoT7-AkRzqbGckKKh6tP8LvBg9uzHSEkBVoSeIhDhRxAeVoV6X6doCHoA/exec" target="_blank" rel="noopener">
+        <span class="tag">ฝึกงาน / สหกิจศึกษา</span>
+        <span class="name">ระบบยื่นความประสงค์ฝึกงานและสหกิจศึกษา</span>
+        <span class="desc">แจ้งความประสงค์และสถานประกอบการที่ต้องการ</span>
+      </a>
+
+      <a class="card" data-cat="student" data-keywords="ประกวด โลโก้ logo microverse ออกแบบ" href="https://docs.google.com/forms/d/e/1FAIpQLSeu2tQ3PXiBkn3m2VSXfpcSe41qG25fwzed0XYseuHmBw__Wg/viewform?usp=sharing&amp;ouid=100526504098245577188" target="_blank" rel="noopener">
+        <span class="tag">การประกวด</span>
+        <span class="name">ใบสมัครและส่งผลงานประกวดออกแบบโลโก้ Microverse Logo Chan</span>
+        <span class="desc">ส่งผลงานประกวดออกแบบโลโก้/สัญลักษณ์ประจำภาควิชา เพื่อสะท้อนอัตลักษณ์ ความคิดสร้างสรรค์ และภาพลักษณ์ที่ทันสมัยของภาควิชา</span>
+      </a>
+
+    </div>
+
+    <p class="empty" id="empty">ไม่พบระบบที่ตรงกับคำค้นหา</p>
+  </section>
+
+  <section class="lower" id="news">
+    <div>
+      <h2>ประกาศถึงนิสิต</h2>
+
+      <article class="news-item">
+        <time>13 ก.ย. 69</time>
+        <div>
+          <h3>กำหนดส่งงานสัมมนา ครั้งที่ 1</h3>
+          <p>ขึ้นว่า "ผ่าน" สำหรับการประเมินบทความทั้ง 2 ฉบับ ภายในเวลา 23.59 น.</p>
+        </div>
+      </article>
+
+      <article class="news-item">
+        <time>13 ก.ย. 69</time>
+        <div>
+          <h3>กำหนดส่ง resume ร่วมกับสถานที่ฝึกงานและสหกิจศึกษา</h3>
+          <p>จะต้องทำการส่งรายละเอียดของ CV และ สถานที่ฝึกงานและสหกิจศึกษา ภายในเวลา 23.59 น.</p>
+        </div>
+      </article>
+    </div>
+
+    <div id="calendar">
+      <h2>ปฏิทินการศึกษา</h2>
+      <div class="cal-row"><span>เปิดภาคเรียนที่ 1</span><span>4 ก.ค. 69</span></div>
+      <div class="cal-row"><span>สอบกลางภาค</span><span>5 - 13 ก.ย. 69</span></div>
+      <div class="cal-row"><span>ปิดรับการส่งบทความเพื่อพิจารณา</span><span>13 ก.ย. 69</span></div>
+      <div class="cal-row"><span>ปิดรับยื่นความประสงค์ฝึกงาน / สหกิจศึกษา</span><span>13 ก.ย. 69</span></div>
+      <div class="cal-row"><span>ปิดรับการส่งผลงานเข้าประกวดออกแบบโลโก้</span><span>15 ก.ย. 69</span></div>
+      <div class="cal-row"><span>สอบปลายภาค</span><span>31 ต.ค. - 8 พ.ย. 69</span></div>
+    </div>
+  </section>
+
+  <footer class="bottom">
+    <span>ศูนย์รวมระบบงาน — สำหรับนิสิตและอาจารย์</span>
+    <span>ปรับปรุงข้อมูลล่าสุด 3 กันยายน 2569</span>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var q = "", cat = "all";
+  var input = document.getElementById("q");
+  var grid = document.getElementById("grid");
+  var empty = document.getElementById("empty");
+  var buttons = Array.prototype.slice.call(document.querySelectorAll("#filters button"));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+
+  function apply(){
+    var shown = 0;
+    cards.forEach(function(c){
+      var hay = (c.textContent + " " + (c.dataset.keywords || "")).toLowerCase();
+      var tags = (c.dataset.cat || "").split(/\s+/).filter(Boolean);
+      var ok = (!q || hay.indexOf(q) !== -1) && (cat === "all" || tags.indexOf(cat) !== -1);
+      c.style.display = ok ? "flex" : "none";
+      if (ok) shown++;
+    });
+    empty.style.display = shown === 0 ? "block" : "none";
+  }
+
+  input.addEventListener("input", function(e){
+    q = (e.target.value || "").trim().toLowerCase();
+    apply();
+  });
+
+  buttons.forEach(function(b){
+    b.addEventListener("click", function(){
+      cat = b.dataset.cat || "all";
+      buttons.forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      apply();
+    });
+  });
+
+  apply();
+})();
+</script>
+</body>
+</html>
